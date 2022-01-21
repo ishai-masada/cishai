@@ -1,11 +1,11 @@
 #include "stdio.h"
 
-enum Name {
-    SUPER_MARIO,
-    LUIGI,
-    PIKACHU,
-    YOSHI
-};
+/* enum Name { */
+/*     SUPER_MARIO, */
+/*     LUIGI, */
+/*     PIKACHU, */
+/*     YOSHI */
+/* }; */
 
 enum Color {
     BLACK,
@@ -22,26 +22,26 @@ enum Occupation {
 };
 
 struct Person {
-    char name;
-    char eye_color;
-    char occupation;
+    enum Color eye_color;
+    enum Occupation occupation;
     int age;
     int height;
+    char name[];
 };
 
-char *name_to_string(enum Name name) {
-    switch (name)
-    {
-        case SUPER_MARIO:
-            return "Super Mario";
-        case LUIGI:
-            return "Luigi";
-        case PIKACHU:
-            return "Pikachu";
-        case YOSHI:
-            return "Yoshi";
-    }
-};
+/* char *name_to_string(enum Name name) { */
+/*     switch (name) */
+/*     { */
+/*         case SUPER_MARIO: */
+/*             return "Super Mario"; */
+/*         case LUIGI: */
+/*             return "Luigi"; */
+/*         case PIKACHU: */
+/*             return "Pikachu"; */
+/*         case YOSHI: */
+/*             return "Yoshi"; */
+/*     } */
+/* }; */
 
 char *color_to_string(enum Color color) {
     switch (color)
@@ -73,14 +73,14 @@ char *occupation_to_string(enum Occupation occupation) {
 
 char main() {
     struct Person people[] = {
-        {SUPER_MARIO, BROWN, PLUMBER, 30, 5},
-        {LUIGI, BROWN, PLUMBER, 30, 6},
-        {PIKACHU, BLACK, BEING_STOOPID, 2, 1}
+        {BROWN, PLUMBER, 30, 5, "Super Mario"},
+        {BROWN, PLUMBER, 30, 6, "Luigi"},
+        {BLACK, BEING_STOOPID, 2, 1, "Pikachu"}
     };
     for (int i = 0; i < 3; i++) {
         struct Person person = people[i];
         printf("%s \n - Eye Color: %s\n - Occupation: %s\n - Age: %d\n",
-            name_to_string(person.name), color_to_string(person.eye_color),
+            person.name, color_to_string(person.eye_color),
             occupation_to_string(person.occupation), person.age);
     };
 }
